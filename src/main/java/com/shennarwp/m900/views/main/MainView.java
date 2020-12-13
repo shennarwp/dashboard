@@ -1,7 +1,7 @@
 package com.shennarwp.m900.views.main;
 
-import java.util.Optional;
-
+import com.shennarwp.m900.views.about.AboutView;
+import com.shennarwp.m900.views.helloworld.LinkView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -15,8 +15,8 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabVariant;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.RouterLink;
-import com.shennarwp.m900.views.helloworld.LinkView;
-import com.shennarwp.m900.views.about.AboutView;
+
+import java.util.Optional;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -40,7 +40,6 @@ public class MainView extends AppLayout {
         layout.setWidthFull();
         layout.setSpacing(false);
         layout.setPadding(false);
-        header.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
         layout.setAlignSelf(FlexComponent.Alignment.CENTER);
         layout.add(header, menu);
