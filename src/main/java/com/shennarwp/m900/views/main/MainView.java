@@ -31,7 +31,8 @@ public class MainView extends AppLayout {
     public MainView() {
         HorizontalLayout header = createHeader();
         menu = createMenuTabs();
-        addToNavbar(createTopBar(header, menu));
+        //addToNavbar(createTopBar(header, menu));
+        addToNavbar(header);
     }
 
     private VerticalLayout createTopBar(HorizontalLayout header, Tabs menu) {

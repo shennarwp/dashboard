@@ -1,5 +1,5 @@
 # Stage that builds the application, a prerequisite for the running stage
-FROM maven:3-jdk-11 as build
+FROM maven:3.6.3-openjdk-15-slim as build
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends nodejs
 
@@ -23,7 +23,7 @@ COPY --chown=myuser:myuser package.json pnpm-lock.yaml webpack.config.js ./
 RUN mvn clean package -DskipTests -Pproduction
 
 # Running stage: the part that is used for running the application
-FROM openjdk:11
+FROM openjdk:16-jdk-alpine3.12
 COPY --from=build /usr/src/app/target/*.jar /usr/app/app.jar
 RUN useradd -m myuser
 USER myuser
