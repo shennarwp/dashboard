@@ -14,7 +14,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
 @Route(value = "hello", layout = MainView.class)
-@PageTitle("Hello World")
+@PageTitle("Links - M900 Dashboard")
 @CssImport("./styles/views/linkview/hello-world-view.css")
 @RouteAlias(value = "", layout = MainView.class)
 public class LinkView extends HorizontalLayout {
@@ -93,7 +93,7 @@ public class LinkView extends HorizontalLayout {
         button.addThemeVariants(ButtonVariant.LUMO_LARGE);
         button.setHeight("45px");
         button.setWidth("220px");
-        button.addClickListener(e -> UI.getCurrent().getPage().setLocation(url));
+        button.addClickListener(e -> UI.getCurrent().getPage().open(url, "_blank"));
         return button;
     }
 
