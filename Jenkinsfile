@@ -11,7 +11,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'docker container stop dashboard && docker container rm dashboard'
-                sh 'docker-compose up'
+                sh 'docker-compose up -d'
             }
         }
     }
