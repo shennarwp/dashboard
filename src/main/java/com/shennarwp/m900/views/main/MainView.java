@@ -6,7 +6,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -21,8 +20,8 @@ import java.util.Optional;
 /**
  * The main view is a top-level placeholder for other views.
  */
-@JsModule("./styles/shared-styles.js")
-@CssImport(value = "./styles/views/main/main-view.css", themeFor = "vaadin-app-layout")
+//@JsModule("./styles/shared-styles.js")
+//@CssImport(value = "./styles/views/main/main-view.css", themeFor = "vaadin-app-layout")
 @CssImport("./styles/views/main/main-view.css")
 public class MainView extends AppLayout {
 
@@ -56,14 +55,6 @@ public class MainView extends AppLayout {
         header.setAlignItems(FlexComponent.Alignment.CENTER);
         header.setAlignSelf(FlexComponent.Alignment.CENTER);
         header.setId("header");
-        /*
-        Image logo = new Image("images/logo.png", "dashboard logo");
-        logo.setId("logo");
-        header.add(logo);
-        Image avatar = new Image("images/user.svg", "Avatar");
-        avatar.setId("avatar");
-        header.add(avatar);
-        */
         header.add(new H1("M900 Dashboard"));
 
         return header;
