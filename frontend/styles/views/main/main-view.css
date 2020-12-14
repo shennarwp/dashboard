@@ -1,10 +1,23 @@
+html {
+  background-color: #1a1a1a;
+}
 #header {
   height: var(--lumo-size-xl);
+  background-color: #1a1a1a;
 }
-#header h1 {
-  font-size: var(--lumo-font-size-l);
+#header h1, h2, h3, h4, h5, h6 {
+  font-size: var(--lumo-font-size-xl);
   margin: 0;
+  color: #fff599;
 }
+
+h1 {
+  font-size: 1.25em; }
+h2 {
+  font-size: 1.00em; }
+h3 {
+  font-size: 0.75em; }
+
 #header img#logo {
   height: var(--lumo-size-l);
   margin: 0 var(--lumo-space-s);
@@ -15,9 +28,48 @@
   margin-right: var(--lumo-space-m);
   overflow: hidden;
   margin-left: auto;
-  background-color: var(--lumo-contrast);
+/*background-color: var(--lumo-contrast);*/
+background-color: #1a1a1a;
 }
-vaadin-app-layout[dir='rtl'] vaadin-horizontal-layout #header img#avatar {
-  margin-left: var(--lumo-space-m);
-  margin-right: auto;
+/*vaadin-app-layout[dir='rtl'] vaadin-horizontal-layout #header img#avatar {
+
+  background-color: #1a1a1a;
+}*/
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 95vh;
+  justify-content: center;
+  padding: 0 30px;
+  text-align: center;
+  background-color: #1a1a1a;
 }
+
+body {
+  font-size: 1.8rem;
+  line-height: 1.618;
+  justify-content: center;
+  color: #fffacd;
+  background-color: #1a1a1a;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+
+.button, button, input[type="submit"], input[type="reset"], input[type="button"] {
+  display: inline-block;
+  white-space: nowrap;
+  background-color: #262626;
+  color: #fff599;
+  border-radius: 8px;
+  cursor: pointer;}
+.button[disabled], button[disabled], input[type="submit"][disabled], input[type="reset"][disabled], input[type="button"][disabled] {
+  cursor: default;
+  opacity: .5; }
+.button:focus:enabled, .button:hover:enabled, button:focus:enabled, button:hover:enabled, input[type="submit"]:focus:enabled, input[type="submit"]:hover:enabled, input[type="reset"]:focus:enabled, input[type="reset"]:hover:enabled, input[type="button"]:focus:enabled, input[type="button"]:hover:enabled {
+  background-color: #262626;
+  border-color: #262626;
+  color: #fff599;
+  outline: 0; }
