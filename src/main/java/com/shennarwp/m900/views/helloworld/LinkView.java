@@ -41,6 +41,7 @@ public class LinkView extends HorizontalLayout {
 
         layout.add(createGrafanaLayout());
         layout.add(createDevToolsLayout());
+        layout.add(createAdminLayout());
         add(layout);
 
 
@@ -76,7 +77,6 @@ public class LinkView extends HorizontalLayout {
     }
 
     private VerticalLayout createDevToolsLayout() {
-        //Button portainerM900 = button("Portainer M900", "https://m900.shennarwp.com/portainer/");
         Anchor jenkinsM900 = button("Jenkins M900", "https://m900.shennarwp.com/jenkins/", FontAwesome.Brands.JENKINS.create());
         Anchor jenkinsAlpinesky = button("Jenkins Alpinesky", "https://shennarwp.com/jenkins/", FontAwesome.Brands.JENKINS.create());
         Anchor gitea = button("Gitea", "https://m900.shennarwp.com/git/shennarwp", FontAwesome.Brands.GIT_ALT.create());
@@ -84,8 +84,22 @@ public class LinkView extends HorizontalLayout {
 
         HorizontalLayout hor1 = createLayout();
         hor1.add(jenkinsM900, jenkinsAlpinesky, gitea, vscode);
-        //Button portainerAlpinesky = button("Portainer Alpinesky", "https://shennarwp.com/portainer");
+
         VerticalLayout ver1 = createVerticalLayout("Dev Tools");
+        ver1.add(hor1);
+        return ver1;
+    }
+
+    private VerticalLayout createAdminLayout() {
+        Anchor portainerM900 = button("Portainer M900", "https://m900.shennarwp.com/portainer/", FontAwesome.Solid.CHESS_ROOK.create());
+        Anchor portainerAlpineSky = button("Portainer Alpinesky", "https://shennarwp.com/portainer/", FontAwesome.Solid.CHESS_ROOK.create());
+        Anchor kibana = button("Kibana", "https://m900.shennarwp.com/kibana/", FontAwesome.Solid.RECEIPT.create());
+        Anchor prometheus = button("Prometheus", "https://m900.shennarwp.com/prometheus/", FontAwesome.Solid.FIRE.create());
+
+        HorizontalLayout hor1 = createLayout();
+        hor1.add(portainerM900, portainerAlpineSky, kibana, prometheus);
+
+        VerticalLayout ver1 = createVerticalLayout("Server Admin");
         ver1.add(hor1);
         return ver1;
     }
