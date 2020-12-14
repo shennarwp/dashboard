@@ -1,10 +1,12 @@
 package com.shennarwp.m900.views.helloworld;
 
+import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.shennarwp.m900.views.main.MainView;
-import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -46,23 +48,23 @@ public class LinkView extends HorizontalLayout {
     }
 
     private VerticalLayout createGrafanaLayout() {
-        Button gfDockerContainer = button("Docker Containers", "https://m900.shennarwp.com/grafana/d/dc/docker-containers");
-        Button gfDockerHost = button("Docker Host", "https://m900.shennarwp.com/grafana/d/doh/docker-host");
-        Button gfHostProcess = button("Host Processes", "https://m900.shennarwp.com/grafana/d/prh/host-processes");
-        Button gfMonitorServices = button("Monitor Services", "https://m900.shennarwp.com/grafana/d/mon/monitor-services");
+        Anchor gfDockerContainer = button("Docker Containers", "https://m900.shennarwp.com/grafana/d/dc/docker-containers", FontAwesome.Brands.DOCKER.create());
+        Anchor gfDockerHost = button("Docker Host", "https://m900.shennarwp.com/grafana/d/doh/docker-host", FontAwesome.Solid.SERVER.create());
+        Anchor gfHostProcess = button("Host Processes", "https://m900.shennarwp.com/grafana/d/prh/host-processes", FontAwesome.Solid.LIST.create());
+        Anchor gfMonitorServices = button("Monitor Services", "https://m900.shennarwp.com/grafana/d/mon/monitor-services", FontAwesome.Brands.WATCHMAN_MONITORING.create());
 
         HorizontalLayout hor1 = createLayout();
         hor1.add(gfDockerContainer, gfDockerHost, gfHostProcess, gfMonitorServices);
 
-        Button gfNginx = button("Nginx","https://m900.shennarwp.com/grafana/d/ngx/nginx");
-        Button gfPihole = button("Pihole", "https://m900.shennarwp.com/grafana/d/pih/pihole");
-        Button gfSynapse = button("Synapse", "https://m900.shennarwp.com/grafana/d/syn/synapse");
-        Button gfTransmission = button("Transmission", "https://m900.shennarwp.com/grafana/d/tra/transmission");
+        Anchor gfNginx = button("Nginx","https://m900.shennarwp.com/grafana/d/ngx/nginx", FontAwesome.Solid.CLOUD.create());
+        Anchor gfPihole = button("Pihole", "https://m900.shennarwp.com/grafana/d/pih/pihole", FontAwesome.Solid.AD.create());
+        Anchor gfSynapse = button("Synapse", "https://m900.shennarwp.com/grafana/d/syn/synapse", FontAwesome.Regular.COMMENTS.create());
+        Anchor gfTransmission = button("Transmission", "https://m900.shennarwp.com/grafana/d/tra/transmission", FontAwesome.Solid.COMPACT_DISC.create());
 
         HorizontalLayout hor2 = createLayout();
         hor2.add(gfNginx, gfPihole, gfSynapse, gfTransmission);
 
-        Button gfF2b = button("Fail2ban", "https://m900.shennarwp.com/grafana/d/f2b/fail2ban-banned-locations");
+        Anchor gfF2b = button("Fail2ban", "https://m900.shennarwp.com/grafana/d/f2b/fail2ban-banned-locations", FontAwesome.Solid.BAN.create());
 
         HorizontalLayout hor3 = createLayout();
         hor3.add(gfF2b);
@@ -75,10 +77,10 @@ public class LinkView extends HorizontalLayout {
 
     private VerticalLayout createDevToolsLayout() {
         //Button portainerM900 = button("Portainer M900", "https://m900.shennarwp.com/portainer/");
-        Button jenkinsM900 = button("Jenkins M900", "https://m900.shennarwp.com/jenkins/");
-        Button jenkinsAlpinesky = button("Jenkins Alpinesky", "https://shennarwp.com/jenkins/");
-        Button gitea = button("Gitea", "https://m900.shennarwp.com/git/shennarwp");
-        Button vscode = button("VSCode", "https://m900.shennarwp.com/vscode/");
+        Anchor jenkinsM900 = button("Jenkins M900", "https://m900.shennarwp.com/jenkins/", FontAwesome.Brands.JENKINS.create());
+        Anchor jenkinsAlpinesky = button("Jenkins Alpinesky", "https://shennarwp.com/jenkins/", FontAwesome.Brands.JENKINS.create());
+        Anchor gitea = button("Gitea", "https://m900.shennarwp.com/git/shennarwp", FontAwesome.Brands.GIT_ALT.create());
+        Anchor vscode = button("VSCode", "https://m900.shennarwp.com/vscode/", FontAwesome.Solid.CODE.create());
 
         HorizontalLayout hor1 = createLayout();
         hor1.add(jenkinsM900, jenkinsAlpinesky, gitea, vscode);
@@ -88,13 +90,15 @@ public class LinkView extends HorizontalLayout {
         return ver1;
     }
 
-    private Button button(String caption, String url) {
-        Button button = new Button(caption);
+    private Anchor button(String caption, String url, Component icon) {
+        Button button = new Button(caption, icon);
         button.addThemeVariants(ButtonVariant.LUMO_LARGE);
         button.setHeight("45px");
         button.setWidth("220px");
-        button.addClickListener(e -> UI.getCurrent().getPage().open(url, "_blank"));
-        return button;
+        //button.addClickListener(e -> UI.getCurrent().getPage().open(url, "_blank"));
+        Anchor anchor = new Anchor(url, button);
+        anchor.setTarget("_blank");
+        return anchor;
     }
 
     private HorizontalLayout createLayout() {

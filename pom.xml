@@ -97,9 +97,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.vaadin.olli</groupId>
-            <artifactId>browser-opener</artifactId>
-            <version>0.5</version>
+            <groupId>com.flowingcode.addons</groupId>
+            <artifactId>font-awesome-iron-iconset</artifactId>
+            <version>2.2.0</version>
         </dependency>
 
         <dependency>
