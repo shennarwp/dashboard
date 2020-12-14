@@ -4,8 +4,6 @@ import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.shennarwp.m900.views.main.MainView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -17,7 +15,7 @@ import com.vaadin.flow.router.RouteAlias;
 
 @Route(value = "hello", layout = MainView.class)
 @PageTitle("Links - M900 Dashboard")
-@CssImport("./styles/views/linkview/hello-world-view.css")
+//@CssImport("./styles/views/linkview/hello-world-view.css")
 @RouteAlias(value = "", layout = MainView.class)
 public class LinkView extends HorizontalLayout {
 
@@ -27,11 +25,12 @@ public class LinkView extends HorizontalLayout {
     public LinkView() {
         setId("linkview");
 
-        setWidth("1060px");
+        //setWidth("1300px");
+        //setWidthFull();
 
-        setSpacing(false);
-        setPadding(false);
-        setMargin(false);
+        setSpacing(true);
+        setPadding(true);
+        setMargin(true);
 
         VerticalLayout layout = new VerticalLayout();
 
@@ -44,8 +43,28 @@ public class LinkView extends HorizontalLayout {
         layout.add(createAdminLayout());
         add(layout);
 
+        VerticalLayout layout2 = new VerticalLayout();
+        layout2.setPadding(false);
+        layout2.setSpacing(false);
+        layout2.setMargin(false);
+        //layout2.setAlignSelf(Alignment.END);
+        //layout2.setAlignItems(Alignment.END);
+        //layout2.setJustifyContentMode(JustifyContentMode.END);
+        layout2.getStyle().set("margin-left", "auto");
+
+        layout2.add(createOthersLayout());
+        add(layout2);
 
 
+
+    }
+
+    private VerticalLayout createOthersLayout() {
+        Anchor element = button("Element Client", "https://m900.shennarwp.com/element/", FontAwesome.Regular.COMMENTS.create());
+        Anchor bitwarden = button("Bitwarden", "https://m900.shennarwp.com/bw/", FontAwesome.Solid.KEY.create());
+        VerticalLayout ver1 = createVerticalLayout("Others");
+        ver1.add(element, bitwarden);
+        return ver1;
     }
 
     private VerticalLayout createGrafanaLayout() {
@@ -59,7 +78,7 @@ public class LinkView extends HorizontalLayout {
 
         Anchor gfNginx = button("Nginx","https://m900.shennarwp.com/grafana/d/ngx/nginx", FontAwesome.Solid.CLOUD.create());
         Anchor gfPihole = button("Pihole", "https://m900.shennarwp.com/grafana/d/pih/pihole", FontAwesome.Solid.AD.create());
-        Anchor gfSynapse = button("Synapse", "https://m900.shennarwp.com/grafana/d/syn/synapse", FontAwesome.Regular.COMMENTS.create());
+        Anchor gfSynapse = button("Synapse", "https://m900.shennarwp.com/grafana/d/syn/synapse", FontAwesome.Solid.CERTIFICATE.create());
         Anchor gfTransmission = button("Transmission", "https://m900.shennarwp.com/grafana/d/tra/transmission", FontAwesome.Solid.COMPACT_DISC.create());
 
         HorizontalLayout hor2 = createLayout();
@@ -106,10 +125,9 @@ public class LinkView extends HorizontalLayout {
 
     private Anchor button(String caption, String url, Component icon) {
         Button button = new Button(caption, icon);
-        button.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        button.setClassName("button");
         button.setHeight("45px");
         button.setWidth("220px");
-        //button.addClickListener(e -> UI.getCurrent().getPage().open(url, "_blank"));
         Anchor anchor = new Anchor(url, button);
         anchor.setTarget("_blank");
         return anchor;
@@ -117,8 +135,8 @@ public class LinkView extends HorizontalLayout {
 
     private HorizontalLayout createLayout() {
         HorizontalLayout hl = new HorizontalLayout();
-        hl.setWidthFull();
-        add(hl);
+        //hl.setWidthFull();
+        //add(hl);
         hl.setPadding(false);
         hl.setSpacing(true);
         return hl;
@@ -126,9 +144,9 @@ public class LinkView extends HorizontalLayout {
 
     private VerticalLayout createVerticalLayout(String caption) {
         VerticalLayout vl = new VerticalLayout();
-        vl.setWidthFull();
+        //vl.setWidthFull();
         vl.add(new H3(caption));
-        add(vl);
+        //add(vl);
         //vl.getStyle().set("background-color", "#dddddd");
         vl.setPadding(true);
         vl.setSpacing(false);
