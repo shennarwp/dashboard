@@ -50,7 +50,7 @@ public class LinkView extends HorizontalLayout {
         //layout2.setAlignSelf(Alignment.END);
         //layout2.setAlignItems(Alignment.END);
         //layout2.setJustifyContentMode(JustifyContentMode.END);
-        layout2.getStyle().set("margin-left", "auto");
+        //layout2.getStyle().set("margin-left", "auto");
 
         layout2.add(createOthersLayout());
         add(layout2);
