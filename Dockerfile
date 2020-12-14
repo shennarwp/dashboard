@@ -23,9 +23,10 @@ COPY --chown=myuser:myuser package.json pnpm-lock.yaml webpack.config.js ./
 RUN mvn clean package -DskipTests -Pproduction
 
 # Running stage: the part that is used for running the application
-FROM openjdk:16-slim-buster
+FROM adoptopenjdk/openjdk11:alpine-jre
 COPY --from=build /usr/src/app/target/*.jar /usr/app/app.jar
-RUN useradd -m myuser
-USER myuser
+RUN addgroup -S dashboard && adduser -S user -G dashboard
+# RUN useradd -m myuser
+USER user
 EXPOSE 8080
 CMD java -jar /usr/app/app.jar
