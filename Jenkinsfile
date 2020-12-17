@@ -14,5 +14,10 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
+        stage('Cleanup') {
+            steps {
+                sh 'docker image prune --force'
+            }
+        }
     }
 }
