@@ -1,11 +1,11 @@
 package com.shennarwp.m900.views.helloworld;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
+import com.shennarwp.m900.util.WeatherClient;
 import com.shennarwp.m900.views.main.MainView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -13,9 +13,11 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
+import java.util.List;
+
 @Route(value = "hello", layout = MainView.class)
 @PageTitle("Links - M900 Dashboard")
-//@CssImport("./styles/views/linkview/hello-world-view.css")
+//@JsModule("./styles/shared-styles.js")
 @RouteAlias(value = "", layout = MainView.class)
 public class LinkView extends HorizontalLayout {
 
@@ -24,10 +26,6 @@ public class LinkView extends HorizontalLayout {
 
     public LinkView() {
         setId("linkview");
-
-        //setWidth("1300px");
-        //setWidthFull();
-
         setSpacing(true);
         setPadding(true);
         setMargin(true);
@@ -47,16 +45,26 @@ public class LinkView extends HorizontalLayout {
         layout2.setPadding(false);
         layout2.setSpacing(false);
         layout2.setMargin(false);
-        //layout2.setAlignSelf(Alignment.END);
-        //layout2.setAlignItems(Alignment.END);
-        //layout2.setJustifyContentMode(JustifyContentMode.END);
-        //layout2.getStyle().set("margin-left", "auto");
 
         layout2.add(createOthersLayout());
+        layout2.add(createWeatherLayout());
         add(layout2);
 
+    }
 
+    private VerticalLayout createWeatherLayout() {
+        WeatherClient wc = new WeatherClient();
+        List<String> currentWeather =  wc.getWeatherDetail();
 
+        Image icon = new Image(currentWeather.get(2), "weather icon");
+        icon.setWidth("100px");
+        icon.setHeight("100px");
+
+        VerticalLayout ver1 = createVerticalLayout("Weather - Saarbrücken");
+        ver1.add(icon);
+        ver1.add(new H3(currentWeather.get(0) + " °C"));
+        ver1.add(new H4(currentWeather.get(1)));
+        return ver1;
     }
 
     private VerticalLayout createOthersLayout() {
@@ -125,8 +133,8 @@ public class LinkView extends HorizontalLayout {
 
     private Anchor button(String caption, String url, Component icon) {
         Button button = new Button(caption, icon);
-        button.setClassName("button");
-        button.setHeight("45px");
+        //button.setClassName("button");
+        button.setHeight("35px");
         button.setWidth("220px");
         Anchor anchor = new Anchor(url, button);
         anchor.setTarget("_blank");
@@ -145,7 +153,7 @@ public class LinkView extends HorizontalLayout {
     private VerticalLayout createVerticalLayout(String caption) {
         VerticalLayout vl = new VerticalLayout();
         //vl.setWidthFull();
-        vl.add(new H3(caption));
+        vl.add(new H2(caption));
         //add(vl);
         //vl.getStyle().set("background-color", "#dddddd");
         vl.setPadding(true);
