@@ -6,7 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 withCredentials([file(credentialsId: 'openweathermap_api', variable: 'openweathermap_api')]) {
-                   sh 'cp $openweathermap_api $PWD/src/main/resources/META-INF/resources/secret/openweathermap_api'
+                   sh 'cp $openweathermap_api /src/main/resources/META-INF/resources/secret/openweathermap_api'
                 }
                 sh 'docker-compose build'
             }
