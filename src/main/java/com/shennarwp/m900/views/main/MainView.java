@@ -23,6 +23,7 @@ import java.util.Optional;
 //@JsModule("./styles/shared-styles.js")
 //@CssImport(value = "./styles/views/main/main-view.css", themeFor = "vaadin-app-layout")
 @CssImport("./styles/views/main/main-view.css")
+@CssImport("./styles/shared-styles.css")
 public class MainView extends AppLayout {
 
     private final Tabs menu;
@@ -56,7 +57,6 @@ public class MainView extends AppLayout {
         header.setAlignSelf(FlexComponent.Alignment.CENTER);
         header.setId("header");
         header.add(new H1("M900 Dashboard"));
-
         return header;
     }
 
