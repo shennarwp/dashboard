@@ -21,7 +21,6 @@ import java.util.Optional;
  * The main view is a top-level placeholder for other views.
  */
 //@JsModule("./styles/shared-styles.js")
-//@CssImport(value = "./styles/views/main/main-view.css", themeFor = "vaadin-app-layout")
 @CssImport("./styles/views/main/main-view.css")
 @CssImport("./styles/shared-styles.css")
 public class MainView extends AppLayout {
@@ -31,8 +30,8 @@ public class MainView extends AppLayout {
     public MainView() {
         HorizontalLayout header = createHeader();
         menu = createMenuTabs();
-        //addToNavbar(createTopBar(header, menu));
-        addToNavbar(header);
+        addToNavbar(createTopBar(header, menu));
+        //addToNavbar(header);
     }
 
     private VerticalLayout createTopBar(HorizontalLayout header, Tabs menu) {
