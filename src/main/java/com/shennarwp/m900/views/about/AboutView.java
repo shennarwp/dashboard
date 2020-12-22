@@ -12,7 +12,7 @@ public class AboutView extends Div {
 
     public AboutView() {
         setId("about-view");
-        setWidth("80%");
+        setWidth("60%");
         add(new Text("Content placeholder"));
     }
 
