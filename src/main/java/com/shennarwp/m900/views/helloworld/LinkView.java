@@ -7,7 +7,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -15,65 +14,92 @@ import com.vaadin.flow.router.RouteAlias;
 
 import java.util.List;
 
+/**
+ * this view contains links / shortcuts to various sites
+ * similar to how bookmark page works
+ */
 @Route(value = "hello", layout = MainView.class)
 @PageTitle("Links - M900 Dashboard")
-//@JsModule("./styles/shared-styles.js")
 @RouteAlias(value = "", layout = MainView.class)
 public class LinkView extends FlexLayout {
 
+    /**
+     * constructor, create two flex layouts, left and right, spaced evenly
+     */
     public LinkView() {
         setId("linkview");
+        setJustifyContentMode(JustifyContentMode.EVENLY);
 
-        FlexLayout layout = new FlexLayout();
-        layout.setFlexWrap(FlexWrap.WRAP);
-        layout.add(createGrafanaLayout());
-        layout.add(createDevToolsLayout());
-        layout.add(createAdminLayout());
-        add(layout);
+        /* left portion of the dashboard */
+        FlexLayout left = new FlexLayout();
+        left.setWidth("60%");
+        left.setFlexWrap(FlexWrap.WRAP);
+        left.add(createGrafanaLayout());
+        left.add(createDevToolsLayout());
+        left.add(createAdminLayout());
+        add(left);
 
-        VerticalLayout layout2 = new VerticalLayout();
-        layout2.add(createOthersLayout());
-        layout2.add(createWeatherLayout());
-        add(layout2);
+        /* right portion of the dashboard */
+        FlexLayout right = new FlexLayout();
+        right.setWidth("20%");
+        right.setFlexWrap(FlexWrap.WRAP);
+        right.add(createOthersLayout());
+        right.add(createWeatherLayout());
+        add(right);
     }
 
+    /**
+     * create vertical weather layout
+     */
     private VerticalLayout createWeatherLayout() {
+        /* get current weather from openweathermap.org */
         WeatherClient wc = new WeatherClient();
         List<String> currentWeather =  wc.getWeatherDetail();
 
+        /* fetch current weather image, 2nd element in the list is the image code */
         Image icon = new Image(currentWeather.get(2), "weather icon");
         icon.setWidth("100px");
         icon.setHeight("100px");
 
-        VerticalLayout ver1 = createVerticalLayout("Weather - Saarbrücken");
-        ver1.add(icon);
-        ver1.add(new H3(currentWeather.get(0) + " °C"));
-        ver1.add(new H4(currentWeather.get(1)));
-
-        //ver1.setWidth("35%");
-        return ver1;
+        /* assemble the layout, 0th element in the list is the temperature, 1st element is the description */
+        VerticalLayout vl = createVerticalLayout("Weather - Saarbrücken");
+        vl.add(icon);
+        vl.add(new H3(currentWeather.get(0) + " °C"));
+        vl.add(new H4(currentWeather.get(1)));
+        return vl;
     }
 
+    /**
+     * create layout for other links (non categorized)
+     */
     private VerticalLayout createOthersLayout() {
-        FlexLayout hor1 = new FlexLayout();
-        hor1.setJustifyContentMode(JustifyContentMode.BETWEEN);
-        hor1.setFlexWrap(FlexWrap.WRAP);
+        /* so that it wraps */
+        FlexLayout fl = new FlexLayout();
+        fl.setJustifyContentMode(JustifyContentMode.BETWEEN);
+        fl.setFlexWrap(FlexWrap.WRAP);
+        fl.setWidthFull();
 
+        /* links to be added */
         Anchor element = button("Element Client", "https://m900.shennarwp.com/element/", FontAwesome.Regular.COMMENTS.create());
         Anchor bitwarden = button("Bitwarden", "https://m900.shennarwp.com/bw/", FontAwesome.Solid.KEY.create());
-        hor1.add(element, bitwarden);
+        fl.add(element, bitwarden);
 
-        VerticalLayout ver1 = createVerticalLayout("Others");
-        //ver1.setWidth("35%");
-        ver1.add(hor1);
-        return ver1;
+        VerticalLayout vl = createVerticalLayout("Others");
+        vl.add(fl);
+        return vl;
     }
 
+    /**
+     * create layout for grafana dashboards
+     */
     private VerticalLayout createGrafanaLayout() {
-        FlexLayout hor1 = new FlexLayout();
-        hor1.setJustifyContentMode(JustifyContentMode.BETWEEN);
-        hor1.setFlexWrap(FlexWrap.WRAP);
+        /* so that it wraps */
+        FlexLayout fl = new FlexLayout();
+        fl.setJustifyContentMode(JustifyContentMode.BETWEEN);
+        fl.setFlexWrap(FlexWrap.WRAP);
+        fl.setWidthFull();
 
+        /* links to be added */
         Anchor gfDockerContainer = button("Docker Containers", "https://m900.shennarwp.com/grafana/d/dc/docker-containers", FontAwesome.Brands.DOCKER.create());
         Anchor gfDockerHost = button("Docker Host", "https://m900.shennarwp.com/grafana/d/doh/docker-host", FontAwesome.Solid.SERVER.create());
         Anchor gfHostProcess = button("Host Processes", "https://m900.shennarwp.com/grafana/d/prh/host-processes", FontAwesome.Solid.LIST.create());
@@ -86,76 +112,89 @@ public class LinkView extends FlexLayout {
 
         Anchor gfF2b = button("Fail2ban", "https://m900.shennarwp.com/grafana/d/f2b/fail2ban-banned-locations", FontAwesome.Solid.BAN.create());
 
-        hor1.add(gfDockerContainer, gfDockerHost, gfHostProcess, gfMonitorServices);
-        hor1.add(gfNginx, gfPihole, gfSynapse, gfTransmission);
-        hor1.add(gfF2b);
+        fl.add(gfDockerContainer, gfDockerHost, gfHostProcess, gfMonitorServices);
+        fl.add(gfNginx, gfPihole, gfSynapse, gfTransmission);
+        fl.add(gfF2b);
 
-        VerticalLayout ver1 = createVerticalLayout("Grafana Dashboards");
-        ver1.setWidth("80%");
-        ver1.add(hor1);
-        return ver1;
+        VerticalLayout vl = createVerticalLayout("Grafana Dashboards");
+        vl.add(fl);
+        return vl;
     }
 
+    /**
+     * create layout for development tools / software links
+     */
     private VerticalLayout createDevToolsLayout() {
-        FlexLayout hor1 = new FlexLayout();
-        hor1.setJustifyContentMode(JustifyContentMode.BETWEEN);
-        hor1.setFlexWrap(FlexWrap.WRAP);
+        /* so that it wraps */
+        FlexLayout fl = new FlexLayout();
+        fl.setJustifyContentMode(JustifyContentMode.BETWEEN);
+        fl.setFlexWrap(FlexWrap.WRAP);
+        fl.setWidthFull();
 
+        /* links to be added */
         Anchor jenkinsM900 = button("Jenkins M900", "https://m900.shennarwp.com/jenkins/", FontAwesome.Brands.JENKINS.create());
         Anchor jenkinsAlpinesky = button("Jenkins Alpinesky", "https://shennarwp.com/jenkins/", FontAwesome.Brands.JENKINS.create());
         Anchor gitea = button("Gitea", "https://m900.shennarwp.com/git/shennarwp", FontAwesome.Brands.GIT_ALT.create());
         Anchor vscode = button("VSCode", "https://m900.shennarwp.com/vscode/", FontAwesome.Solid.CODE.create());
 
-        hor1.add(jenkinsM900, jenkinsAlpinesky, gitea, vscode);
+        fl.add(jenkinsM900, jenkinsAlpinesky, gitea, vscode);
 
-        VerticalLayout ver1 = createVerticalLayout("Dev Tools");
-        ver1.setWidth("80%");
-        ver1.add(hor1);
-        return ver1;
+        VerticalLayout vl = createVerticalLayout("Dev Tools");
+        vl.add(fl);
+        return vl;
     }
 
+    /**
+     * create layout for server administration stuffs
+     */
     private VerticalLayout createAdminLayout() {
-        FlexLayout hor1 = new FlexLayout();
-        hor1.setJustifyContentMode(JustifyContentMode.BETWEEN);
-        hor1.setFlexWrap(FlexWrap.WRAP);
+        /* so that it wraps */
+        FlexLayout fl = new FlexLayout();
+        fl.setJustifyContentMode(JustifyContentMode.BETWEEN);
+        fl.setFlexWrap(FlexWrap.WRAP);
+        fl.setWidthFull();
 
+        /* links to be added */
         Anchor portainerM900 = button("Portainer M900", "https://m900.shennarwp.com/portainer/", FontAwesome.Solid.CHESS_ROOK.create());
         Anchor portainerAlpineSky = button("Portainer Alpinesky", "https://shennarwp.com/portainer/", FontAwesome.Solid.CHESS_ROOK.create());
         Anchor kibana = button("Kibana", "https://m900.shennarwp.com/kibana/", FontAwesome.Solid.RECEIPT.create());
         Anchor prometheus = button("Prometheus", "https://m900.shennarwp.com/prometheus/", FontAwesome.Solid.FIRE.create());
 
-        hor1.add(portainerM900, portainerAlpineSky, kibana, prometheus);
+        fl.add(portainerM900, portainerAlpineSky, kibana, prometheus);
 
-        VerticalLayout ver1 = createVerticalLayout("Server Admin");
-        ver1.setWidth("80%");
-        ver1.add(hor1);
-        return ver1;
+        VerticalLayout vl = createVerticalLayout("Server Admin");
+        vl.add(fl);
+        return vl;
     }
 
+    /**
+     * create a button that open a link in a new tab when clicked
+     * @param caption text inside the button
+     * @param url which link the button should open to
+     * @param icon icon of the button
+     * @return button which acts as a link (Anchor)
+     */
     private Anchor button(String caption, String url, Component icon) {
         Button button = new Button(caption, icon);
         button.setHeight("35px");
-        button.setWidth("220px");
+        button.setWidth("200px");
         Anchor anchor = new Anchor(url, button);
-        anchor.setTarget("_blank");
+        anchor.setTarget("_blank");                 /* open in new tab */
         return anchor;
     }
 
-    private HorizontalLayout createLayout() {
-        HorizontalLayout hl = new HorizontalLayout();
-        hl.setPadding(false);
-        hl.setSpacing(true);
-        return hl;
-    }
-
+    /**
+     * create generic vertical layout, with no padding and no spacing
+     * @param caption caption as H2
+     * @return created vertical layout
+     */
     private VerticalLayout createVerticalLayout(String caption) {
         VerticalLayout vl = new VerticalLayout();
         vl.add(new H2(caption));
         //vl.getStyle().set("background-color", "#dddddd");
-        vl.setPadding(true);
+        vl.setPadding(false);
         vl.setSpacing(false);
         vl.setMargin(true);
         return vl;
     }
-
 }
