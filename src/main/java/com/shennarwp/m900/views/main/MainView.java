@@ -1,7 +1,7 @@
 package com.shennarwp.m900.views.main;
 
 import com.shennarwp.m900.views.about.AboutView;
-import com.shennarwp.m900.views.helloworld.LinkView;
+import com.shennarwp.m900.views.link.LinkView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;

@@ -1,4 +1,4 @@
-package com.shennarwp.m900.views.helloworld;
+package com.shennarwp.m900.views.link;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.shennarwp.m900.util.WeatherClient;
