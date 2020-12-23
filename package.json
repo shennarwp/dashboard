@@ -74,7 +74,7 @@
     "validator": "13.1.17",
     "lit-html": "1.2.1",
     "@types/validator": "13.1.0",
-    "css-loader": "4.2.1",
+    "css-loader": "5.0.1",
     "lit-css-loader": "0.0.4",
     "extract-loader": "5.1.0"
   },
@@ -151,7 +151,7 @@
       "validator": "13.1.17",
       "lit-html": "1.2.1",
       "@types/validator": "13.1.0",
-      "css-loader": "4.2.1",
+      "css-loader": "5.0.1",
       "lit-css-loader": "0.0.4",
       "extract-loader": "5.1.0"
     },
