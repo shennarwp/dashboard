@@ -1,17 +1,17 @@
 .linkview {
     /*display: flex;*/
     /*flex-wrap: wrap;*/
-    max-width: 90%;
-    margin-left: 50px;
-    margin-right: 50px;
+    max-width: 100%;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .linkview-left {
     /*background: tomato;*/
-    margin: 20px;
+    margin: 0 30px 10px 0;
     flex: 2 2 15em
 }
 .linkview-right {
-    margin: 20px;
+    margin: 0 10px 10px 0;
     flex: 1 1 5em
 }
