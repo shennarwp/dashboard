@@ -21,7 +21,7 @@ import java.util.Optional;
  * The main view is a top-level placeholder for other views.
  */
 //@JsModule("./styles/shared-styles.js")
-@CssImport("./styles/views/main/main-view.css")
+@CssImport("./styles/views/main-view.css")
 @CssImport("./styles/shared-styles.css")
 public class MainView extends AppLayout {
 
