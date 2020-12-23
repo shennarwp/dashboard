@@ -5,6 +5,7 @@ import com.shennarwp.m900.util.WeatherClient;
 import com.shennarwp.m900.views.main.MainView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -21,6 +22,7 @@ import java.util.List;
 @Route(value = "hello", layout = MainView.class)
 @PageTitle("Links - M900 Dashboard")
 @RouteAlias(value = "", layout = MainView.class)
+@CssImport("./styles/views/link-view.css")
 public class LinkView extends FlexLayout {
 
     /**
@@ -28,23 +30,25 @@ public class LinkView extends FlexLayout {
      */
     public LinkView() {
         setId("linkview");
-        setJustifyContentMode(JustifyContentMode.EVENLY);
+        setClassName("linkview");
+        setJustifyContentMode(JustifyContentMode.AROUND);
+        setFlexWrap(FlexWrap.WRAP);
 
         /* left portion of the dashboard */
         FlexLayout left = new FlexLayout();
-        left.setWidth("60%");
         left.setFlexWrap(FlexWrap.WRAP);
         left.add(createGrafanaLayout());
         left.add(createDevToolsLayout());
         left.add(createAdminLayout());
+        left.setClassName("linkview-left");         /* class .linkview-left in link-view.css */
         add(left);
 
         /* right portion of the dashboard */
         FlexLayout right = new FlexLayout();
-        right.setWidth("20%");
         right.setFlexWrap(FlexWrap.WRAP);
         right.add(createOthersLayout());
         right.add(createWeatherLayout());
+        right.setClassName("linkview-right");       /* class .linkview-right in link-view.css */
         add(right);
     }
 
