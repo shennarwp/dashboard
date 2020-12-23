@@ -158,5 +158,8 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,vaadin,windows,maven
 /.vscode/
 
+# secret
 src/main/resources/META-INF/resources/secret/openweathermap_api
+
+# sonar stuff
 /.scannerwork/
