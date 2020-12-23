@@ -159,3 +159,4 @@ $RECYCLE.BIN/
 /.vscode/
 
 src/main/resources/META-INF/resources/secret/openweathermap_api
+/.scannerwork/
