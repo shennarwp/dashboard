@@ -6,4 +6,6 @@ written in Java using [Vaadin](https://vaadin.com/) and [SpringBoot](https://spr
 The site can be seen [here](https://m900.shennarwp.com/dashboard/).
 
 Current progress:
-![currentstate](./current_state.png)
+![ss_desktop](./screenshot/ss_dt.png)
+
+![ss_phone](./screenshot/ss_ph.jpg) ![ss_phone2](./screenshot/ss_ph2.jpg)
