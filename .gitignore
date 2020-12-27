@@ -163,3 +163,6 @@ src/main/resources/META-INF/resources/secret/openweathermap_api
 
 # sonar stuff
 /.scannerwork/
+
+# h2 database
+*.db
