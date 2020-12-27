@@ -165,4 +165,4 @@ src/main/resources/META-INF/resources/secret/openweathermap_api
 /.scannerwork/
 
 # h2 database
-*.db
+**.db
