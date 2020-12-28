@@ -49,10 +49,7 @@
     "@vaadin/vaadin-date-time-picker": "1.4.0",
     "@vaadin/form": "./target/flow-frontend/form",
     "@vaadin/vaadin-avatar": "1.0.2",
-    "cdigit": "2.5.6",
-    "chance": "1.1.7",
-    "open": "^7.2.1",
-    "@flowingcode/font-awesome-iron-iconset": "2.2.0"
+    "open": "^7.2.1"
   },
   "devDependencies": {
     "webpack": "4.42.0",
@@ -106,7 +103,7 @@
       "@vaadin/vaadin-button": "2.4.0",
       "@vaadin/vaadin-date-picker": "4.4.1",
       "@vaadin/vaadin-text-field": "2.8.2",
-      "@vaadin/vaadin-menu-bar": "1.2.0",
+      "@vaadin/vaadin-menu-bar": "1.2.1",
       "@vaadin/vaadin-form-layout": "2.3.0",
       "@vaadin/vaadin-accordion": "1.2.0",
       "@polymer/iron-list": "3.1.0",
@@ -155,6 +152,6 @@
       "lit-css-loader": "0.0.4",
       "extract-loader": "5.1.0"
     },
-    "hash": "cb69983c3a771e4e974d7c7795d0d7b9bfd39e88e320c755972e8a616a6d5d2d"
+    "hash": "e51154e39cef3e7316595e275f2cbec90c7864b542710472bb8b308bcaae131f"
   }
 }

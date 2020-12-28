@@ -1,5 +1,4 @@
 dependencies:
-  '@flowingcode/font-awesome-iron-iconset': 2.2.0
   '@polymer/iron-icon': 3.0.1
   '@polymer/iron-list': 3.1.0
   '@polymer/polymer': 3.2.0
@@ -46,8 +45,6 @@ dependencies:
   '@vaadin/vaadin-text-field': 2.8.2
   '@vaadin/vaadin-time-picker': 2.4.0
   '@vaadin/vaadin-upload': 4.4.1
-  cdigit: 2.5.6
-  chance: 1.1.7
   lit-element: 2.3.1
   open: 7.3.0
 devDependencies:
@@ -1017,14 +1014,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-lnIX7piTxOH22xE7fDXDbSHg9MM1/6ORnafpJmov5rs0kX5g4BZxeXNJLXsMRiO0U5Rb8/FvMS6xlTnTHvxonQ==
-  /@flowingcode/font-awesome-iron-iconset/2.2.0:
-    dependencies:
-      '@polymer/iron-icon': 3.0.1
-      '@polymer/iron-iconset-svg': 3.0.1
-      '@polymer/polymer': 3.2.0
-    dev: false
-    resolution:
-      integrity: sha512-Hf0OxZxv124rFmi1eyFeFiZKESoTAWfAk0/taTOgXlVAlq+fx0gXQgnAwpMxL+Ykx+SbIB/oizmHtYFpNFL0dA==
   /@nicolo-ribaudo/chokidar-2/2.1.8-no-fsevents:
     dependencies:
       anymatch: 2.0.0
@@ -2998,13 +2987,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Dd4d/+0tsK0UNLrZs3CvNukqalnVTRrxb5mcQm8rHL49t7V5ZaTygwXkrq+FB+dVDf++4ri8eJnFEJAB8332PA==
-  /cdigit/2.5.6:
-    dependencies:
-      commander: 6.2.1
-    dev: false
-    hasBin: true
-    resolution:
-      integrity: sha512-vWobMCPvyrlifhkVAgLhmRApM33OsvoWDhrNaAiwzZcWpzQfT0H3a+rxSZlCv3IyyjxwJHEQbExoJAQUSKvyRA==
   /chalk/1.1.3:
     dependencies:
       ansi-styles: 2.2.1
@@ -3027,10 +3009,6 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
-  /chance/1.1.7:
-    dev: false
-    resolution:
-      integrity: sha512-bua/2cZEfzS6qPm0vi3JEvGNbriDLcMj9lKxCQOjUcCJRcyjA7umP0zZm6bKWWlBN04vA0L99QGH/CZQawr0eg==
   /chokidar/3.4.3:
     dependencies:
       anymatch: 3.1.1
@@ -3154,12 +3132,6 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
-  /commander/6.2.1:
-    dev: false
-    engines:
-      node: '>= 6'
-    resolution:
-      integrity: sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==
   /commondir/1.0.1:
     dev: true
     resolution:
@@ -7742,7 +7714,6 @@ packages:
     resolution:
       integrity: sha512-AX3Zw5iPruN5ie6xGRIDgqkT+ZhnRlZMLMHAs8tg7nRruy2Nb+i5o9bwghAogtM08q1dpr2LVoS8KSTMYpWXUw==
 specifiers:
-  '@flowingcode/font-awesome-iron-iconset': 2.2.0
   '@polymer/iron-icon': 3.0.1
   '@polymer/iron-list': 3.1.0
   '@polymer/polymer': 3.2.0
@@ -7791,8 +7762,6 @@ specifiers:
   '@vaadin/vaadin-time-picker': 2.4.0
   '@vaadin/vaadin-upload': 4.4.1
   awesome-typescript-loader: 5.2.1
-  cdigit: 2.5.6
-  chance: 1.1.7
   chokidar: ^3.4.0
   compression-webpack-plugin: 4.0.1
   copy-webpack-plugin: 5.1.2
