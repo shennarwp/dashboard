@@ -1,6 +1,7 @@
 package com.shennarwp.m900.views.link;
 
-import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
+import com.shennarwp.m900.data.entity.LinkEntity;
+import com.shennarwp.m900.data.service.LinkService;
 import com.shennarwp.m900.util.WeatherClient;
 import com.shennarwp.m900.views.main.MainView;
 import com.vaadin.flow.component.Component;
@@ -12,23 +13,34 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
  * this view contains links / shortcuts to various sites
  * similar to how bookmark page works
  */
-@Route(value = "hello", layout = MainView.class)
-@PageTitle("Links - M900 Dashboard")
+@Route(value = "link", layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
+@PageTitle("Links - M900 Dashboard")
 @CssImport("./styles/views/link-view.css")
-public class LinkView extends FlexLayout {
+public class LinkView extends FlexLayout
+{
+
+    private final LinkService linkService;
 
     /**
      * constructor, create two flex layouts, left and right, spaced evenly
      */
-    public LinkView() {
+    @Autowired
+    public LinkView(LinkService linkService) {
+        this.linkService = linkService;
+    }
+
+    @PostConstruct
+    public void init() {
         setId("linkview");
         setClassName("linkview");
         setJustifyContentMode(JustifyContentMode.AROUND);
@@ -83,10 +95,10 @@ public class LinkView extends FlexLayout {
         fl.setFlexWrap(FlexWrap.WRAP);
         fl.setWidthFull();
 
-        /* links to be added */
-        Anchor element = button("Element Client", "https://m900.shennarwp.com/element/", FontAwesome.Regular.COMMENTS.create());
-        Anchor bitwarden = button("Bitwarden", "https://m900.shennarwp.com/bw/", FontAwesome.Solid.KEY.create());
-        fl.add(element, bitwarden);
+        linkService.getLinkEntityByCategory("Others")
+                .stream()
+                .map(this::createAnchor)
+                .forEach(fl::add);
 
         VerticalLayout vl = createVerticalLayout("Others");
         vl.add(fl);
@@ -103,22 +115,10 @@ public class LinkView extends FlexLayout {
         fl.setFlexWrap(FlexWrap.WRAP);
         fl.setWidthFull();
 
-        /* links to be added */
-        Anchor gfDockerContainer = button("Docker Containers", "https://m900.shennarwp.com/grafana/d/dc/docker-containers", FontAwesome.Brands.DOCKER.create());
-        Anchor gfDockerHost = button("Docker Host", "https://m900.shennarwp.com/grafana/d/doh/docker-host", FontAwesome.Solid.SERVER.create());
-        Anchor gfHostProcess = button("Host Processes", "https://m900.shennarwp.com/grafana/d/prh/host-processes", FontAwesome.Solid.LIST.create());
-        Anchor gfMonitorServices = button("Monitor Services", "https://m900.shennarwp.com/grafana/d/mon/monitor-services", FontAwesome.Brands.WATCHMAN_MONITORING.create());
-
-        Anchor gfNginx = button("Nginx","https://m900.shennarwp.com/grafana/d/ngx/nginx", FontAwesome.Solid.CLOUD.create());
-        Anchor gfPihole = button("Pihole", "https://m900.shennarwp.com/grafana/d/pih/pihole", FontAwesome.Solid.AD.create());
-        Anchor gfSynapse = button("Synapse", "https://m900.shennarwp.com/grafana/d/syn/synapse", FontAwesome.Solid.CERTIFICATE.create());
-        Anchor gfTransmission = button("Transmission", "https://m900.shennarwp.com/grafana/d/tra/transmission", FontAwesome.Solid.COMPACT_DISC.create());
-
-        Anchor gfF2b = button("Fail2ban", "https://m900.shennarwp.com/grafana/d/f2b/fail2ban-banned-locations", FontAwesome.Solid.BAN.create());
-
-        fl.add(gfDockerContainer, gfDockerHost, gfHostProcess, gfMonitorServices);
-        fl.add(gfNginx, gfPihole, gfSynapse, gfTransmission);
-        fl.add(gfF2b);
+        linkService.getLinkEntityByCategory("Grafana Dashboard")
+                    .stream()
+                    .map(this::createAnchor)
+                    .forEach(fl::add);
 
         VerticalLayout vl = createVerticalLayout("Grafana Dashboards");
         vl.add(fl);
@@ -135,13 +135,10 @@ public class LinkView extends FlexLayout {
         fl.setFlexWrap(FlexWrap.WRAP);
         fl.setWidthFull();
 
-        /* links to be added */
-        Anchor jenkinsM900 = button("Jenkins M900", "https://m900.shennarwp.com/jenkins/", FontAwesome.Brands.JENKINS.create());
-        Anchor jenkinsAlpinesky = button("Jenkins Alpinesky", "https://shennarwp.com/jenkins/", FontAwesome.Brands.JENKINS.create());
-        Anchor gitea = button("Gitea", "https://m900.shennarwp.com/git/shennarwp", FontAwesome.Brands.GIT_ALT.create());
-        Anchor vscode = button("VSCode", "https://m900.shennarwp.com/vscode/", FontAwesome.Solid.CODE.create());
-
-        fl.add(jenkinsM900, jenkinsAlpinesky, gitea, vscode);
+        linkService.getLinkEntityByCategory("Dev Tools")
+                    .stream()
+                    .map(this::createAnchor)
+                    .forEach(fl::add);
 
         VerticalLayout vl = createVerticalLayout("Dev Tools");
         vl.add(fl);
@@ -158,13 +155,10 @@ public class LinkView extends FlexLayout {
         fl.setFlexWrap(FlexWrap.WRAP);
         fl.setWidthFull();
 
-        /* links to be added */
-        Anchor portainerM900 = button("Portainer M900", "https://m900.shennarwp.com/portainer/", FontAwesome.Solid.CHESS_ROOK.create());
-        Anchor portainerAlpineSky = button("Portainer Alpinesky", "https://shennarwp.com/portainer/", FontAwesome.Solid.CHESS_ROOK.create());
-        Anchor kibana = button("Kibana", "https://m900.shennarwp.com/kibana/", FontAwesome.Solid.RECEIPT.create());
-        Anchor prometheus = button("Prometheus", "https://m900.shennarwp.com/prometheus/", FontAwesome.Solid.FIRE.create());
-
-        fl.add(portainerM900, portainerAlpineSky, kibana, prometheus);
+        linkService.getLinkEntityByCategory("Server Admin")
+                .stream()
+                .map(this::createAnchor)
+                .forEach(fl::add);
 
         VerticalLayout vl = createVerticalLayout("Server Admin");
         vl.add(fl);
@@ -200,5 +194,11 @@ public class LinkView extends FlexLayout {
         vl.setSpacing(false);
         vl.setMargin(true);
         return vl;
+    }
+
+    private Anchor createAnchor(LinkEntity linkEntity) {
+        Image icon = new Image(linkEntity.getImageName(), "");
+        icon.setHeight("25px");
+        return button(linkEntity.getTitle(), linkEntity.getUrl(), icon);
     }
 }
