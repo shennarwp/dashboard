@@ -1,0 +1,19 @@
+Docker Containers;https://m900.shennarwp.com/grafana/d/dc/docker-containers;Grafana Dashboard;images/logo/docker.svg
+Docker Host;https://m900.shennarwp.com/grafana/d/doh/docker-host;Grafana Dashboard;images/logo/host.svg
+Host Processes;https://m900.shennarwp.com/grafana/d/prh/host-processes;Grafana Dashboard;images/logo/process.svg
+Monitor Services;https://m900.shennarwp.com/grafana/d/mon/monitor-services;Grafana Dashboard;images/logo/monitor.svg
+Nginx;https://m900.shennarwp.com/grafana/d/ngx/nginx;Grafana Dashboard;images/logo/nginx.png
+Pihole;https://m900.shennarwp.com/grafana/d/pih/pihole;Grafana Dashboard;images/logo/pihole.svg
+Synapse;https://m900.shennarwp.com/grafana/d/syn/synapse;Grafana Dashboard;images/logo/synapse.svg
+Transmission;https://m900.shennarwp.com/grafana/d/tra/transmission;Grafana Dashboard;images/logo/transmission.png
+Fail2ban;https://m900.shennarwp.com/grafana/d/f2b/fail2ban-banned-locations;Grafana Dashboard;images/logo/fail2ban.svg
+Jenkins M900;https://m900.shennarwp.com/jenkins/;Dev Tools;images/logo/jenkins.svg
+Jenkins Alpinesky;https://shennarwp.com/jenkins/;Dev Tools;images/logo/jenkins.svg
+Gitea;https://m900.shennarwp.com/git/shennarwp;Dev Tools;images/logo/gitea.png
+Code-Server;https://m900.shennarwp.com/vscode/;Dev Tools;images/logo/vscode.png
+Portainer M900;https://m900.shennarwp.com/portainer/;Server Admin;images/logo/portainer.png
+Portainer Alpinesky;https://shennarwp.com/portainer/;Server Admin;images/logo/portainer.png
+Kibana;https://m900.shennarwp.com/kibana/;Server Admin;images/logo/kibana.png
+Prometheus;https://m900.shennarwp.com/prometheus/;Server Admin;images/logo/prometheus.png
+Element;https://m900.shennarwp.com/element/;Others;images/logo/element.svg
+Bitwarden;https://m900.shennarwp.com/bw/;Others;images/logo/bitwarden.png
