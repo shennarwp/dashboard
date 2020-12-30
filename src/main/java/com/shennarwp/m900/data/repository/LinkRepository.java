@@ -1,62 +1,46 @@
 package com.shennarwp.m900.data.repository;
 
 import com.shennarwp.m900.data.entity.LinkEntity;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * repository class for LinkEntity
+ * responsible for saving / querying from the database
+ */
 @Repository
 public class LinkRepository
 {
-	@Value( "${spring.datasource.url}" )
-	private String url;
-
-	@Value( "${spring.datasource.username}")
-	private String username;
-
-	@Value( "${spring.datasource.password}")
-	private String password;
-
-	private Connection connection = null;
 	private EntityManagerFactory factory;
-	EntityManager entityManager;
-	EntityTransaction transaction;
+	private EntityManager entityManager;
+	private EntityTransaction transaction;
 
-	static Logger logger = LogManager.getLogger(LinkRepository.class);
+	public LinkRepository() {}
 
-	public LinkRepository() {
-		try {
-			connection = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
-			logger.log(Level.ERROR, "Failed to connect to the database. SQLException: " + e);
-		}
-		logger.log(Level.INFO, "Connection established");
-	}
-
+	/** open connection */
 	public void initTransaction() {
 		factory = Persistence.createEntityManagerFactory("h2");
 		entityManager = factory.createEntityManager();
 		transaction = entityManager.getTransaction();
 	}
 
+	/** close connection */
 	public void finishTransaction() {
 		entityManager.close();
 		factory.close();
 	}
 
+	/**
+	 * save LinkEntity object to the database
+	 * @param toBeSaved the new object
+	 */
 	public void save(LinkEntity toBeSaved) {
 		initTransaction();
 		transaction.begin();
@@ -72,6 +56,10 @@ public class LinkRepository
 		finishTransaction();
 	}
 
+	/**
+	 * find LinkEntity object by its id
+	 * @param id of the tobe found object
+	 */
 	public Optional<LinkEntity> findById(Long id) {
 		initTransaction();
 		transaction.begin();
@@ -82,24 +70,36 @@ public class LinkRepository
 		return Optional.of(link);
 	}
 
+	/**
+	 * find LinkEntity objects by category name
+	 * @param categoryName name of the category to be searched
+	 * @return List of LinkEntity object having the same category name
+	 */
 	public List<LinkEntity> findByCategory(String categoryName) {
 		return findAll().stream()
 						.filter(l -> l.getCategory().equals(categoryName))
 						.collect(Collectors.toList());
 	}
 
+	/**
+	 * @return all LinkEntity object in the database
+	 */
 	public List<LinkEntity> findAll() {
 		initTransaction();
 		transaction.begin();
 
 		List<LinkEntity> list = entityManager
-				.createQuery("SELECT l FROM LinkEntity l", LinkEntity.class).getResultList();
+				.createQuery("SELECT l FROM LinkEntity l", LinkEntity.class)
+				.getResultList();
 
 		transaction.commit();
 		finishTransaction();
 		return list;
 	}
 
+	/**
+	 * remove all LinkEntity object from the database
+	 */
 	public void removeAll() {
 		initTransaction();
 		transaction.begin();
