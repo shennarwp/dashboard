@@ -36,7 +36,14 @@ public class LinkEntity
 		LinkEntity other = (LinkEntity) obj;
 
 		return getTitle().equals(other.getTitle()) &&
+				getCategory().equals(other.getCategory()) &&
 				getUrl().equals(other.getUrl()) &&
 				getImageName().equals(other.getImageName());
+	}
+
+	@Override
+	public int hashCode() {
+		return getTitle().hashCode() + getCategory().hashCode() +
+				getUrl().hashCode() + getImageName().hashCode();
 	}
 }
