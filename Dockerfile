@@ -23,7 +23,7 @@ COPY --chown=myuser:myuser package.json pnpm-lock.yaml webpack.config.js ./
 RUN mvn clean package -Pproduction
 
 # Running stage: the part that is used for running the application
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM adoptopenjdk/openjdk15:alpine-jre
 COPY --from=build /usr/src/app/target/*.jar /usr/app/app.jar
 RUN addgroup -S dashboard && adduser -S user -G dashboard
 # RUN useradd -m myuser
