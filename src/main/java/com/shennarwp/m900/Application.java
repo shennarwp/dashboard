@@ -20,7 +20,12 @@ import org.vaadin.artur.helpers.LaunchUtil;
 @PWA(name = "dashboard", shortName = "dashboard")
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
 
+    /* need to disable devtools.restart because LinkEntity is loaded by RestartClassLoader
+     * instead of base ClassLoader, this will cause issue
+     * where casting to LinkEntity object to fail since it is loaded by different ClassLoader
+     * Reference: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-devtools-restart */
     public static void main(String[] args) {
+        System.setProperty("spring.devtools.restart.enabled", "false");
         LaunchUtil.launchBrowserInDevelopmentMode(SpringApplication.run(Application.class, args));
     }
 
