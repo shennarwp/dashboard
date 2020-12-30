@@ -4,7 +4,6 @@ import com.shennarwp.m900.data.entity.LinkEntity;
 import com.shennarwp.m900.data.service.LinkService;
 import com.shennarwp.m900.util.WeatherClient;
 import com.shennarwp.m900.views.main.MainView;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.*;
@@ -31,14 +30,17 @@ public class LinkView extends FlexLayout
 
     private final LinkService linkService;
 
-    /**
-     * constructor, create two flex layouts, left and right, spaced evenly
-     */
+    /** constructor, injected by spring */
     @Autowired
     public LinkView(LinkService linkService) {
         this.linkService = linkService;
     }
 
+    /**
+     * This will be called after constructor and the LinkService is injected by Spring
+     * necessary because dependency injection occurs after constructor is called
+     * create two flex layouts, left and right, spaced evenly
+     */
     @PostConstruct
     public void init() {
         setId("linkview");
@@ -97,7 +99,7 @@ public class LinkView extends FlexLayout
 
         linkService.getLinkEntityByCategory("Others")
                 .stream()
-                .map(this::createAnchor)
+                .map(this::button)
                 .forEach(fl::add);
 
         VerticalLayout vl = createVerticalLayout("Others");
@@ -117,7 +119,7 @@ public class LinkView extends FlexLayout
 
         linkService.getLinkEntityByCategory("Grafana Dashboard")
                     .stream()
-                    .map(this::createAnchor)
+                    .map(this::button)
                     .forEach(fl::add);
 
         VerticalLayout vl = createVerticalLayout("Grafana Dashboards");
@@ -137,7 +139,7 @@ public class LinkView extends FlexLayout
 
         linkService.getLinkEntityByCategory("Dev Tools")
                     .stream()
-                    .map(this::createAnchor)
+                    .map(this::button)
                     .forEach(fl::add);
 
         VerticalLayout vl = createVerticalLayout("Dev Tools");
@@ -157,7 +159,7 @@ public class LinkView extends FlexLayout
 
         linkService.getLinkEntityByCategory("Server Admin")
                 .stream()
-                .map(this::createAnchor)
+                .map(this::button)
                 .forEach(fl::add);
 
         VerticalLayout vl = createVerticalLayout("Server Admin");
@@ -167,16 +169,16 @@ public class LinkView extends FlexLayout
 
     /**
      * create a button that open a link in a new tab when clicked
-     * @param caption text inside the button
-     * @param url which link the button should open to
-     * @param icon icon of the button
+     * @param linkEntity the Object that describe the shortcut / button to be created
      * @return button which acts as a link (Anchor)
      */
-    private Anchor button(String caption, String url, Component icon) {
-        Button button = new Button(caption, icon);
+    private Anchor button(LinkEntity linkEntity) {
+        Image icon = new Image(linkEntity.getImageName(), "");
+        icon.setHeight("25px");
+        Button button = new Button(linkEntity.getTitle(), icon);
         button.setHeight("35px");
         button.setWidth("200px");
-        Anchor anchor = new Anchor(url, button);
+        Anchor anchor = new Anchor(linkEntity.getUrl(), button);
         anchor.setTarget("_blank");                 /* open in new tab */
         return anchor;
     }
@@ -194,11 +196,5 @@ public class LinkView extends FlexLayout
         vl.setSpacing(false);
         vl.setMargin(true);
         return vl;
-    }
-
-    private Anchor createAnchor(LinkEntity linkEntity) {
-        Image icon = new Image(linkEntity.getImageName(), "");
-        icon.setHeight("25px");
-        return button(linkEntity.getTitle(), linkEntity.getUrl(), icon);
     }
 }
