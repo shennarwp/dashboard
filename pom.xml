@@ -7,12 +7,14 @@
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <maven.compiler.release>15</maven.compiler.release>
+        <spring.boot.parent.version>2.4.1</spring.boot.parent.version>
         <vaadin.version>18.0.3</vaadin.version>
 
+        <!-- sonar stuff -->
         <sonar.projectKey>shennarwp_dashboard</sonar.projectKey>
         <sonar.organization>shennarwp</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -120,11 +122,14 @@
             <version>2.14.0</version>
         </dependency>
 
+        <!-- for live reload e.g. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!-- test -->
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-testbench</artifactId>
@@ -138,12 +143,14 @@
         </dependency>
     </dependencies>
 
+    <!-- default application run (from IDE) -->
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.parent.version}</version>
                 <!-- Clean build and startup time for Vaadin apps sometimes may exceed
                      the default Spring Boot's 30sec timeout.  -->
                 <configuration>
@@ -173,8 +180,8 @@
     </build>
 
     <profiles>
+        <!-- Production mode is activated using -Pproduction -->
         <profile>
-            <!-- Production mode is activated using -Pproduction -->
             <id>production</id>
             <properties>
                 <vaadin.productionMode>true</vaadin.productionMode>
@@ -213,6 +220,7 @@
             </build>
         </profile>
 
+        <!-- profile: integration test -->
         <profile>
             <id>it</id>
             <build>
@@ -258,6 +266,5 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
 </project>
