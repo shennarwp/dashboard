@@ -8,4 +8,4 @@ The site can be seen [here](https://m900.shennarwp.com/dashboard/).
 Current progress:
 ![ss_desktop](./screenshot/ss_dt.png)
 
-![ss_phone](./screenshot/ss_ph.jpg) ![ss_phone2](./screenshot/ss_ph2.jpg)
+![ss_phone](./screenshot/ss_ph.jpg) ![ss_phone1](./screenshot/ss_ph1.jpg)
