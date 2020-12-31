@@ -100,7 +100,7 @@ public class WeatherClient
 									.getJSONObject(0)
 									.get("icon")
 									.toString();
-		String imageURL = "http://openweathermap.org/img/wn/" + imageCode + "@2x.png";
+		String imageURL = "https://openweathermap.org/img/wn/" + imageCode + "@2x.png";
 
 		List<String> weather = new ArrayList<>();
 		weather.add(temperature);
