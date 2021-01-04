@@ -1,7 +1,7 @@
 package com.shennarwp.m900.views.main;
 
-import com.shennarwp.m900.views.about.AboutView;
 import com.shennarwp.m900.views.link.LinkView;
+import com.shennarwp.m900.views.other.OtherView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -67,7 +67,7 @@ public class MainView extends AppLayout {
     }
 
     private static Tab[] getAvailableTabs() {
-        return new Tab[]{createTab("Link", LinkView.class), createTab("About", AboutView.class)};
+        return new Tab[]{createTab("Link", LinkView.class), createTab("Other", OtherView.class)};
     }
 
     private static Tab createTab(String text, Class<? extends Component> navigationTarget) {
