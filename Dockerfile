@@ -1,5 +1,5 @@
 # Stage that builds the application, a prerequisite for the running stage
-FROM maven:3.6.3-openjdk-15-slim as build
+FROM maven:3.8.1-openjdk-15-slim as build
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends nodejs
 
