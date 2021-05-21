@@ -11,7 +11,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <maven.compiler.release>15</maven.compiler.release>
-        <spring.boot.parent.version>2.4.2</spring.boot.parent.version>
+        <spring.boot.parent.version>2.5.0</spring.boot.parent.version>
         <vaadin.version>18.0.5</vaadin.version>
 
         <!-- sonar stuff -->
