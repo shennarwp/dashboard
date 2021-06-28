@@ -12,7 +12,7 @@
 
         <maven.compiler.release>15</maven.compiler.release>
         <spring.boot.parent.version>2.4.2</spring.boot.parent.version>
-        <vaadin.version>18.0.5</vaadin.version>
+        <vaadin.version>19.0.9</vaadin.version>
 
         <!-- sonar stuff -->
         <sonar.projectKey>shennarwp_dashboard</sonar.projectKey>
